@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="Flexcom_kompresoryPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>beany.Uzivatel</class>
+    <class>beany.Stroj</class>
+    <class>beany.Servis</class>
+    <class>beany.Navsteva</class>
+    <class>beany.StrojType</class>
+    <class>beany.Zakaznik</class>
+    <class>beany.Pobocka</class>
+    <class>beany.SoucastkaType</class>
+    <class>beany.Soucastka</class>
+    <class>beany.Revize</class>
+    <class>beany.Udrzba</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.15.12:3306/kompresory?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="Petr"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>
