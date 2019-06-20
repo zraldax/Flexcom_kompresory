@@ -70,6 +70,10 @@ public class Pobocka implements Serializable {
         return idpobocka;
     }
 
+    public void setIdpobocka(Integer idpobocka) {
+        this.idpobocka = idpobocka;
+    }
+
     public int getZakaznikIdzakaznik() {
         return zakaznikIdzakaznik;
     }
@@ -115,6 +119,19 @@ public class Pobocka implements Serializable {
         int hash = 0;
         hash += (idpobocka != null ? idpobocka.hashCode() : 0);
         return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Pobocka)) {
+            return false;
+        }
+        Pobocka other = (Pobocka) object;
+        if ((this.idpobocka == null && other.idpobocka != null) || (this.idpobocka != null && !this.idpobocka.equals(other.idpobocka))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
