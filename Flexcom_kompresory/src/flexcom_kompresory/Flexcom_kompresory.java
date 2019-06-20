@@ -5,6 +5,9 @@
  */
 package flexcom_kompresory;
 
+import gui.MainGui;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Kancl
@@ -15,7 +18,16 @@ public class Flexcom_kompresory {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        
+
+   
+        MainGui okno = new MainGui();
+        okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        okno.setVisible(true);
+        okno.setSize(500, 500);
     }
-    
 }
+    
+    
+
