@@ -13,6 +13,7 @@
     <class>beany.Soucastka</class>
     <class>beany.Revize</class>
     <class>beany.Udrzba</class>
+    <class>beany.Foto</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.15.12:3306/kompresory?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="Petr"/>

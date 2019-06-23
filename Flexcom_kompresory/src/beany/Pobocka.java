@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -23,13 +22,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "pobocka")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Pobocka.findAll", query = "SELECT p FROM Pobocka p")
     , @NamedQuery(name = "Pobocka.findByIdpobocka", query = "SELECT p FROM Pobocka p WHERE p.idpobocka = :idpobocka")
     , @NamedQuery(name = "Pobocka.findByZakaznikIdzakaznik", query = "SELECT p FROM Pobocka p WHERE p.zakaznikIdzakaznik = :zakaznikIdzakaznik")
-    , @NamedQuery(name = "Pobocka.findByN\u00e1zev", query = "SELECT p FROM Pobocka p WHERE p.n\u00e1zev = :n\u00e1zev")
-    , @NamedQuery(name = "Pobocka.findByKontaktn\u00edOsoba", query = "SELECT p FROM Pobocka p WHERE p.kontaktn\u00edOsoba = :kontaktn\u00edOsoba")
+    , @NamedQuery(name = "Pobocka.findByNazev", query = "SELECT p FROM Pobocka p WHERE p.nazev = :nazev")
+    , @NamedQuery(name = "Pobocka.findByKontaktniOsoba", query = "SELECT p FROM Pobocka p WHERE p.kontaktniOsoba = :kontaktniOsoba")
     , @NamedQuery(name = "Pobocka.findByEmail", query = "SELECT p FROM Pobocka p WHERE p.email = :email")
     , @NamedQuery(name = "Pobocka.findByTelefon", query = "SELECT p FROM Pobocka p WHERE p.telefon = :telefon")})
 public class Pobocka implements Serializable {
@@ -44,10 +42,10 @@ public class Pobocka implements Serializable {
     @Column(name = "zakaznik_idzakaznik")
     private int zakaznikIdzakaznik;
     @Basic(optional = false)
-    @Column(name = "n\u00e1zev")
-    private String název;
-    @Column(name = "kontaktn\u00ed_osoba")
-    private String kontaktníOsoba;
+    @Column(name = "nazev")
+    private String nazev;
+    @Column(name = "kontaktni_osoba")
+    private String kontaktniOsoba;
     @Column(name = "email")
     private String email;
     @Column(name = "telefon")
@@ -60,10 +58,10 @@ public class Pobocka implements Serializable {
         this.idpobocka = idpobocka;
     }
 
-    public Pobocka(Integer idpobocka, int zakaznikIdzakaznik, String název) {
+    public Pobocka(Integer idpobocka, int zakaznikIdzakaznik, String nazev) {
         this.idpobocka = idpobocka;
         this.zakaznikIdzakaznik = zakaznikIdzakaznik;
-        this.název = název;
+        this.nazev = nazev;
     }
 
     public Integer getIdpobocka() {
@@ -82,20 +80,20 @@ public class Pobocka implements Serializable {
         this.zakaznikIdzakaznik = zakaznikIdzakaznik;
     }
 
-    public String getNázev() {
-        return název;
+    public String getNazev() {
+        return nazev;
     }
 
-    public void setNázev(String název) {
-        this.název = název;
+    public void setNazev(String nazev) {
+        this.nazev = nazev;
     }
 
-    public String getKontaktníOsoba() {
-        return kontaktníOsoba;
+    public String getKontaktniOsoba() {
+        return kontaktniOsoba;
     }
 
-    public void setKontaktníOsoba(String kontaktníOsoba) {
-        this.kontaktníOsoba = kontaktníOsoba;
+    public void setKontaktniOsoba(String kontaktniOsoba) {
+        this.kontaktniOsoba = kontaktniOsoba;
     }
 
     public String getEmail() {

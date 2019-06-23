@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -21,11 +20,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "servis")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Servis.findAll", query = "SELECT s FROM Servis s")
     , @NamedQuery(name = "Servis.findByNavstevaIdnavsteva", query = "SELECT s FROM Servis s WHERE s.navstevaIdnavsteva = :navstevaIdnavsteva")
-    , @NamedQuery(name = "Servis.findByServisn\u00edProtokol", query = "SELECT s FROM Servis s WHERE s.servisn\u00edProtokol = :servisn\u00edProtokol")
+    , @NamedQuery(name = "Servis.findByServisniProtokol", query = "SELECT s FROM Servis s WHERE s.servisniProtokol = :servisniProtokol")
     , @NamedQuery(name = "Servis.findByPopisOprav", query = "SELECT s FROM Servis s WHERE s.popisOprav = :popisOprav")})
 public class Servis implements Serializable {
 
@@ -35,8 +33,8 @@ public class Servis implements Serializable {
     @Column(name = "navsteva_idnavsteva")
     private Integer navstevaIdnavsteva;
     @Basic(optional = false)
-    @Column(name = "servisn\u00ed_protokol")
-    private String servisníProtokol;
+    @Column(name = "servisni_protokol")
+    private String servisniProtokol;
     @Column(name = "popis_oprav")
     private String popisOprav;
 
@@ -47,9 +45,9 @@ public class Servis implements Serializable {
         this.navstevaIdnavsteva = navstevaIdnavsteva;
     }
 
-    public Servis(Integer navstevaIdnavsteva, String servisníProtokol) {
+    public Servis(Integer navstevaIdnavsteva, String servisniProtokol) {
         this.navstevaIdnavsteva = navstevaIdnavsteva;
-        this.servisníProtokol = servisníProtokol;
+        this.servisniProtokol = servisniProtokol;
     }
 
     public Integer getNavstevaIdnavsteva() {
@@ -60,12 +58,12 @@ public class Servis implements Serializable {
         this.navstevaIdnavsteva = navstevaIdnavsteva;
     }
 
-    public String getServisníProtokol() {
-        return servisníProtokol;
+    public String getServisniProtokol() {
+        return servisniProtokol;
     }
 
-    public void setServisníProtokol(String servisníProtokol) {
-        this.servisníProtokol = servisníProtokol;
+    public void setServisniProtokol(String servisniProtokol) {
+        this.servisniProtokol = servisniProtokol;
     }
 
     public String getPopisOprav() {

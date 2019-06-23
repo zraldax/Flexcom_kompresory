@@ -16,7 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,13 +23,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "soucastka")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Soucastka.findAll", query = "SELECT s FROM Soucastka s")
     , @NamedQuery(name = "Soucastka.findByIdsoucastka", query = "SELECT s FROM Soucastka s WHERE s.idsoucastka = :idsoucastka")
     , @NamedQuery(name = "Soucastka.findByStrojIdstroj", query = "SELECT s FROM Soucastka s WHERE s.strojIdstroj = :strojIdstroj")
     , @NamedQuery(name = "Soucastka.findBySoucastkaTypeIdsoucastkaType", query = "SELECT s FROM Soucastka s WHERE s.soucastkaTypeIdsoucastkaType = :soucastkaTypeIdsoucastkaType")
-    , @NamedQuery(name = "Soucastka.findByPozn\u00e1mka", query = "SELECT s FROM Soucastka s WHERE s.pozn\u00e1mka = :pozn\u00e1mka")
+    , @NamedQuery(name = "Soucastka.findByPoznamka", query = "SELECT s FROM Soucastka s WHERE s.poznamka = :poznamka")
     , @NamedQuery(name = "Soucastka.findByFoto", query = "SELECT s FROM Soucastka s WHERE s.foto = :foto")
     , @NamedQuery(name = "Soucastka.findByDatumInstalace", query = "SELECT s FROM Soucastka s WHERE s.datumInstalace = :datumInstalace")
     , @NamedQuery(name = "Soucastka.findByDatumVymeny", query = "SELECT s FROM Soucastka s WHERE s.datumVymeny = :datumVymeny")})
@@ -47,8 +45,8 @@ public class Soucastka implements Serializable {
     @Basic(optional = false)
     @Column(name = "soucastka_type_idsoucastka_type")
     private int soucastkaTypeIdsoucastkaType;
-    @Column(name = "pozn\u00e1mka")
-    private String poznámka;
+    @Column(name = "poznamka")
+    private String poznamka;
     @Column(name = "foto")
     private String foto;
     @Basic(optional = false)
@@ -99,12 +97,12 @@ public class Soucastka implements Serializable {
         this.soucastkaTypeIdsoucastkaType = soucastkaTypeIdsoucastkaType;
     }
 
-    public String getPoznámka() {
-        return poznámka;
+    public String getPoznamka() {
+        return poznamka;
     }
 
-    public void setPoznámka(String poznámka) {
-        this.poznámka = poznámka;
+    public void setPoznamka(String poznamka) {
+        this.poznamka = poznamka;
     }
 
     public String getFoto() {
