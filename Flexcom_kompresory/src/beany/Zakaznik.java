@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "zakaznik")
 @NamedQueries({
-    @NamedQuery(name = "Zakaznik.findAll", query = "SELECT z FROM Zakaznik z")
+    @NamedQuery(name = "Zakaznik.findAll", query = "SELECT z FROM Zakaznik z ORDERED BY z.nazev")
     , @NamedQuery(name = "Zakaznik.findByIdzakaznik", query = "SELECT z FROM Zakaznik z WHERE z.idzakaznik = :idzakaznik")
     , @NamedQuery(name = "Zakaznik.findByNazev", query = "SELECT z FROM Zakaznik z WHERE z.nazev = :nazev")})
 public class Zakaznik implements Serializable {
