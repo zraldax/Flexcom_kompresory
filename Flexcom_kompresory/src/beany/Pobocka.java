@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Pobocka.findAll", query = "SELECT p FROM Pobocka p")
     , @NamedQuery(name = "Pobocka.findByIdpobocka", query = "SELECT p FROM Pobocka p WHERE p.idpobocka = :idpobocka")
-    , @NamedQuery(name = "Pobocka.findByZakaznikIdzakaznik", query = "SELECT p FROM Pobocka p WHERE p.zakaznikIdzakaznik = :zakaznikIdzakaznik")
+    , @NamedQuery(name = "Pobocka.findByZakaznikIdzakaznik", query = "SELECT p FROM Pobocka p WHERE p.zakaznikIdzakaznik = :zakaznikIdzakaznik ORDERED BY p.nazev")
     , @NamedQuery(name = "Pobocka.findByNazev", query = "SELECT p FROM Pobocka p WHERE p.nazev = :nazev")
     , @NamedQuery(name = "Pobocka.findByKontaktniOsoba", query = "SELECT p FROM Pobocka p WHERE p.kontaktniOsoba = :kontaktniOsoba")
     , @NamedQuery(name = "Pobocka.findByEmail", query = "SELECT p FROM Pobocka p WHERE p.email = :email")
