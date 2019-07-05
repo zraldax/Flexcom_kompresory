@@ -9,9 +9,12 @@ package gui;
  *
  * @author Kancl
  */
+import dao.Zakaznik_DAO;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 public class MainGui extends JFrame {
@@ -20,12 +23,12 @@ public class MainGui extends JFrame {
     JMenuItem menuItem;
     JRadioButtonMenuItem rbMenuItem;
     JCheckBoxMenuItem cbMenuItem;
+    FilterComboBox filtercombo;
     public MainGui()
     {
         super("Flexcom kompresory");
         /*FlowLayout layout = new FlowLayout();
         setLayout(layout);*/
-        JFrame frame = new JFrame();
         //Create the menu bar.
         menuBar = new JMenuBar();
 
@@ -100,7 +103,7 @@ public class MainGui extends JFrame {
         menuBar.add(menu);
 
         setJMenuBar(menuBar);
-
+        add(new JPanel01());
         }
 
 }

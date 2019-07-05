@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
 public class FilterComboBox extends JComboBox {
     private List<String> array;
 
-    public FilterComboBox(List<String> array) {
+    public FilterComboBox(List<String> array) {       
         super(array.toArray());
         this.array = array;
         this.setEditable(true);

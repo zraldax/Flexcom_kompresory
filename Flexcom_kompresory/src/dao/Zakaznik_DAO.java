@@ -23,12 +23,12 @@ public class Zakaznik_DAO {
     EntityManager em = emf.createEntityManager();
     EntityTransaction tx;
     List<Zakaznik> customers;
-    ArrayList<String> names;
+    List<String> names;
     public Zakaznik_DAO() {
-        
+       names= new ArrayList<>();
     }
     
-    public ArrayList<String> getAllNames(){
+    public List<String> getAllNames(){
         update();
         for(Zakaznik a : customers){
             names.add(a.getNazev());
@@ -45,8 +45,8 @@ public class Zakaznik_DAO {
     }
     
     private void update(){
-        TypedQuery<Zakaznik> query = em.createNamedQuery("Zakznik.findAll",Zakaznik.class);
+        TypedQuery<Zakaznik> query = em.createNamedQuery("Zakaznik.findAll",Zakaznik.class);
         customers = query.getResultList();
-    }
+        }
     
 }
