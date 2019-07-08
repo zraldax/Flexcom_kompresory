@@ -48,13 +48,5 @@ public class Zakaznik_DAO {
         TypedQuery<Zakaznik> query = em.createNamedQuery("Zakaznik.findAll",Zakaznik.class);
         customers = query.getResultList();
         }
-    public void addZakaznik(String name){
-        tx = em.getTransaction();
-        Zakaznik zakaznik = new Zakaznik();
-        zakaznik.setNazev(name);
-        tx.begin();
-        em.persist(zakaznik);
-        tx.commit();
-    }
     
 }
