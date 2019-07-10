@@ -102,7 +102,7 @@ public class MainGui extends JFrame {
                 "This menu does nothing");
         menuBar.add(menu);
 
-        setJMenuBar(menuBar);
+        setJMenuBar(menuBar);       
         add(new JPanel01());
         }
 
