@@ -37,6 +37,16 @@ import javax.persistence.TemporalType;
     , @NamedQuery(name = "Stroj.findByPoznamka", query = "SELECT s FROM Stroj s WHERE s.poznamka = :poznamka")})
 public class Stroj implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "vyrobni_cislo")
+    private String vyrobniCislo;
+    @Basic(optional = false)
+    @Column(name = "kod")
+    private String kod;
+    @Basic(optional = false)
+    @Column(name = "name")
+    private String name;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +59,6 @@ public class Stroj implements Serializable {
     @Basic(optional = false)
     @Column(name = "pobocka_idpobocka")
     private int pobockaIdpobocka;
-    @Basic(optional = false)
-    @Column(name = "vyrobni_cislo")
-    private int vyrobniCislo;
     @Basic(optional = false)
     @Column(name = "objednaci_cislo")
     private String objednaciCislo;
@@ -72,7 +79,7 @@ public class Stroj implements Serializable {
         this.idstroj = idstroj;
     }
 
-    public Stroj(Integer idstroj, int strojTypeIdstrojType, int pobockaIdpobocka, int vyrobniCislo, String objednaciCislo, boolean revizovat, Date rokVyroby) {
+    public Stroj(Integer idstroj, int strojTypeIdstrojType, int pobockaIdpobocka, String vyrobniCislo, String objednaciCislo, boolean revizovat, Date rokVyroby) {
         this.idstroj = idstroj;
         this.strojTypeIdstrojType = strojTypeIdstrojType;
         this.pobockaIdpobocka = pobockaIdpobocka;
@@ -106,11 +113,11 @@ public class Stroj implements Serializable {
         this.pobockaIdpobocka = pobockaIdpobocka;
     }
 
-    public int getVyrobniCislo() {
+    public String getVyrobniCislo() {
         return vyrobniCislo;
     }
 
-    public void setVyrobniCislo(int vyrobniCislo) {
+    public void setVyrobniCislo(String vyrobniCislo) {
         this.vyrobniCislo = vyrobniCislo;
     }
 
@@ -169,6 +176,22 @@ public class Stroj implements Serializable {
     @Override
     public String toString() {
         return "beany.Stroj[ idstroj=" + idstroj + " ]";
+    }
+
+    public String getKod() {
+        return kod;
+    }
+
+    public void setKod(String kod) {
+        this.kod = kod;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

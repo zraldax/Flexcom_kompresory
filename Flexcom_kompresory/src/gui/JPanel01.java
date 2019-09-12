@@ -6,10 +6,10 @@
 package gui;
 
 import dao.Pobocka_DAO;
+import dao.Stroj_DAO;
 import dao.Zakaznik_DAO;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,44 +21,67 @@ import javax.swing.JPanel;
  * @author Cooler
  */
 public class JPanel01 extends JPanel{
-    private FilterComboBox filtercombo;
-    private JComboBox combox1,combobox2;
+    private JComboBox<String> combox1,combobox2,comboBox3;
     private JButton submitbuton;
     private JLabel customerText,bussnisText,text1,text2,text3;
     private Zakaznik_DAO zakaznik;
     private Pobocka_DAO pobocka;
+    private Stroj_DAO stroj;
     
     public JPanel01() {
         zakaznik = new Zakaznik_DAO();
         pobocka = new Pobocka_DAO();
+        stroj = new Stroj_DAO();
         List<String> zakaznici = zakaznik.getAllNames();
-        zakaznici.add(0,"");
-        filtercombo = new FilterComboBox(zakaznici);
-        text1 = new JLabel("Zvolte zákazníka :");
-        customerText = new JLabel("");
-        combox1 = new JComboBox();
-        add(text1);
-        add(customerText);
-        add(filtercombo);
-        add(combox1);
-        submitbuton = new JButton("Hledej");
-        submitbuton.addActionListener(new ActionListener() {
+        combox1 = new JComboBox<>(zakaznici.toArray(new String[zakaznici.size()]));
+        combobox2 = new JComboBox<>();
+        comboBox3 = new JComboBox<>();
+        ComboBoxFilterDecorator<String> decorate = ComboBoxFilterDecorator.decorate(combox1,
+              JPanel01::myfilter);
+        combox1.setRenderer(new CustomComboRenderer(decorate.getFilterLabel()));
+        combox1.addItemListener(new ItemListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                String a = filtercombo.getSelectedItem().toString();
-                System.out.println(a);
-                customerText.setText(a);
-                ArrayList<String> b = pobocka.getPobocka(zakaznik.getID(a));
-                combox1.removeAllItems();
-                for(String i : b){
-                    combox1.addItem(i);
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()== ItemEvent.DESELECTED && combox1.getSelectedItem() != null ){
+                    System.out.println(combox1.getSelectedItem());
+                    String name = combox1.getSelectedItem().toString();
+                    List<String> pobocky = pobocka.getPobocka(zakaznik.getID(name));                 
+                    combobox2.removeAllItems();
+                    System.out.println(pobocky);
+                    for(String i : pobocky){
+                        combobox2.addItem(i);
+                    }
+                    comboBox3.removeAllItems();
                 }
-                
-                //filtercombo.setVisible(false);
-                }
+            }
         });
+        combobox2.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(combobox2.getSelectedItem() != null ){
+                    System.out.println(combox1.getSelectedItem());
+                    String name = combobox2.getSelectedItem().toString();
+                    List<String> pobocky = stroj.getStroj(pobocka.getId(name));                 
+                    comboBox3.removeAllItems();
+                    System.out.println(pobocky);
+                    for(String i : pobocky){
+                        comboBox3.addItem(i);
+                    }                  
+                }
+            }
+        });
+        submitbuton = new JButton("NAJDI");
+        add(combox1);
+        add(combobox2);
+        add(comboBox3);
         add(submitbuton);
+        
     }
-    
+    private static boolean myfilter(String a,String textToFilter){
+        if(textToFilter.isEmpty()){
+            return true;
+        }
+        return a.toLowerCase().contains(textToFilter.toLowerCase());
+    }
     
 }
