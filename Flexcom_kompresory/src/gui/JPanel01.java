@@ -10,6 +10,8 @@ import dao.Stroj_DAO;
 import dao.Zakaznik_DAO;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -46,12 +48,12 @@ public class JPanel01 extends JPanel{
                     System.out.println(combox1.getSelectedItem());
                     String name = combox1.getSelectedItem().toString();
                     List<String> pobocky = pobocka.getPobocka(zakaznik.getID(name));                 
-                    combobox2.removeAllItems();
+                    combobox2.removeAllItems();comboBox3.removeAllItems();
                     System.out.println(pobocky);
                     for(String i : pobocky){
                         combobox2.addItem(i);
                     }
-                    comboBox3.removeAllItems();
+                    //
                 }
             }
         });
@@ -61,12 +63,16 @@ public class JPanel01 extends JPanel{
                 if(combobox2.getSelectedItem() != null ){
                     System.out.println(combox1.getSelectedItem());
                     String name = combobox2.getSelectedItem().toString();
-                    List<String> pobocky = stroj.getStroj(pobocka.getId(name));                 
-                    comboBox3.removeAllItems();
-                    System.out.println(pobocky);
-                    for(String i : pobocky){
-                        comboBox3.addItem(i);
-                    }                  
+                    String idname = combox1.getSelectedItem().toString();
+                    if(idname != null){
+                        List<String>    pobocky = stroj.getStroj(pobocka.getId(zakaznik.getID(idname),name));
+                        comboBox3.removeAllItems();
+                        System.out.println(pobocky);
+                        for(String i : pobocky){
+                            comboBox3.addItem(i);
+                        }    
+                    }             
+                                      
                 }
             }
         });
