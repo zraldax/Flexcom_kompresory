@@ -8,6 +8,7 @@ package dao;
 import beany.Pobocka;
 import beany.Stroj;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,5 +34,23 @@ public class Stroj_DAO {
             names.add(i.getName());
         }
         return names;
+    }
+    public StrojData getStrojData(String name){
+        if(list_of_polozka.size()>0)
+        for(Stroj i : list_of_polozka){
+                if(i.getName().toLowerCase().equals(name.toLowerCase()))
+                    return new StrojData(
+                        i.getVyrobniCislo(),
+                        i.getKod(),
+                        name,
+                        i.getStrojTypeIdstrojType(),
+                        i.getPobockaIdpobocka(),
+                        i.getObjednaciCislo(),
+                        i.getRevizovat(),
+                        i.getRokVyroby(),
+                        i.getPoznamka()
+                    );
+        }
+        return null;                
     }
 }

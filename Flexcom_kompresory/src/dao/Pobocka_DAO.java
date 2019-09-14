@@ -6,7 +6,6 @@
 package dao;
 
 import beany.Pobocka;
-import beany.Stroj;
 import beany.Zakaznik;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class Pobocka_DAO {
     public Pobocka_DAO() {
     }
     public List<String>getPobocka(int id){
-        ArrayList<String> names = new ArrayList<>();
+        names = new ArrayList<>();
         TypedQuery<Pobocka> query = em.createNamedQuery("Pobocka.findByZakaznikIdzakaznik",Pobocka.class);
         query.setParameter("zakaznikIdzakaznik", id);
         list_of_item = query.getResultList();
@@ -40,7 +39,7 @@ public class Pobocka_DAO {
         return names;
     }
     public int getId(int id ,String name){
-        ArrayList<String> names = new ArrayList<>();
+        names = new ArrayList<>();
         TypedQuery<Pobocka> query = em.createNamedQuery("Pobocka.findByZakaznikIdzakaznik",Pobocka.class);
         query.setParameter("zakaznikIdzakaznik", id);
         for(Pobocka a :list_of_item){

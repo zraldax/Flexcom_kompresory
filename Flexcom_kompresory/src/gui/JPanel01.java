@@ -6,17 +6,22 @@
 package gui;
 
 import dao.Pobocka_DAO;
+import dao.StrojData;
 import dao.Stroj_DAO;
 import dao.Zakaznik_DAO;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  *
@@ -25,15 +30,18 @@ import javax.swing.JPanel;
 public class JPanel01 extends JPanel{
     private JComboBox<String> combox1,combobox2,comboBox3;
     private JButton submitbuton;
-    private JLabel customerText,bussnisText,text1,text2,text3;
+    private JLabel lvyrobnícislo,lkod,lname,lobjednacicislo,lrevizovat,lrokvyroby,lpoznámka,lmotohodiny;
     private Zakaznik_DAO zakaznik;
     private Pobocka_DAO pobocka;
     private Stroj_DAO stroj;
+    private StrojData data;
+    Border border;
     
     public JPanel01() {
         zakaznik = new Zakaznik_DAO();
         pobocka = new Pobocka_DAO();
         stroj = new Stroj_DAO();
+        border = BorderFactory.createLineBorder(Color.black, 1);
         List<String> zakaznici = zakaznik.getAllNames();
         combox1 = new JComboBox<>(zakaznici.toArray(new String[zakaznici.size()]));
         combobox2 = new JComboBox<>();
@@ -76,12 +84,39 @@ public class JPanel01 extends JPanel{
                 }
             }
         });
+        lvyrobnícislo =new JLabel("555");
+        lvyrobnícislo.setBorder(border);
+        lvyrobnícislo.setPreferredSize(new Dimension(150,25));
+        lkod =new JLabel("");
+        lname =new JLabel("");
+        lobjednacicislo =new JLabel("");
+        lrevizovat =new JLabel("");
+        lrokvyroby =new JLabel("");
+        lpoznámka =new JLabel("");
+        lmotohodiny =new JLabel("");
         submitbuton = new JButton("NAJDI");
+        submitbuton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(comboBox3.getSelectedItem() != null){
+                    String name = comboBox3.getSelectedItem().toString();
+                    data = stroj.getStrojData(comboBox3.getSelectedItem().toString());
+                    lname.setText(data.name);
+                }
+            }
+        });
         add(combox1);
         add(combobox2);
         add(comboBox3);
         add(submitbuton);
-        
+        add(lvyrobnícislo);
+        add(lkod);       
+        add(lname); 
+        add(lobjednacicislo); 
+        add(lrevizovat); 
+        add(lrokvyroby); 
+        add(lpoznámka); 
+        add(lmotohodiny); 
     }
     private static boolean myfilter(String a,String textToFilter){
         if(textToFilter.isEmpty()){
