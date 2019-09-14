@@ -50,9 +50,9 @@ public class Foto implements Serializable {
     }
 
     public Foto(Integer idfoto, int strojIdstroj, int cesta) {
-        this.idfoto = idfoto;
-        this.strojIdstroj = strojIdstroj;
-        this.cesta = cesta;
+        setIdfoto(idfoto);
+        setStrojIdstroj(strojIdstroj);
+        setCesta(cesta);
     }
 
     public Integer getIdfoto() {
