@@ -53,5 +53,21 @@ public class Stroj_DAO {
         }
         return null;                
     }
-    public StrojData getStrojData(int id);
+    public StrojData getStrojData(int id){
+        TypedQuery<Stroj> query = em.createNamedQuery("Stroj.findByIdstroj",Stroj.class);
+        query.setParameter("Idstroj", id);
+        list_of_polozka = query.getResultList();
+        Stroj i = list_of_polozka.get(0);
+        return new StrojData(
+                        i.getVyrobniCislo(),
+                        i.getKod(),
+                        i.getName(),
+                        i.getStrojTypeIdstrojType(),
+                        i.getPobockaIdpobocka(),
+                        i.getObjednaciCislo(),
+                        i.getRevizovat(),
+                        i.getRokVyroby(),
+                        i.getPoznamka()
+                    );
+    }
 }
