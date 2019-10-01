@@ -53,4 +53,5 @@ public class Stroj_DAO {
         }
         return null;                
     }
+    public StrojData getStrojData(int id);
 }
