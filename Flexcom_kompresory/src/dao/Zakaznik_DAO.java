@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 /**
@@ -42,6 +43,13 @@ public class Zakaznik_DAO {
             if(name.compareTo(a.getNazev())==0)return a.getIdzakaznik();
         }
         return -1;
+    }
+    public String getName(int id){
+        TypedQuery<Zakaznik> query = em.createNamedQuery("Zakaznik.findByIdzakaznik",Zakaznik.class);
+        query.setParameter("Idzakaznik",id);
+        Zakaznik a= query.getSingleResult();
+        return a.getNazev();
+        
     }
     
     private void update(){

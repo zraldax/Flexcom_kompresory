@@ -42,10 +42,17 @@ public class Pobocka_DAO {
         names = new ArrayList<>();
         TypedQuery<Pobocka> query = em.createNamedQuery("Pobocka.findByZakaznikIdzakaznik",Pobocka.class);
         query.setParameter("zakaznikIdzakaznik", id);
+        list_of_item = query.getResultList();
         for(Pobocka a :list_of_item){
             if(name.compareTo(a.getNazev())==0)return a.getIdpobocka();
         }
         return -1;
+    }
+    public BranchData getBranch(int branchId){
+        TypedQuery<Pobocka> query = em.createNamedQuery("Pobocka.findByIdpobocka",Pobocka.class);
+        query.setParameter("Idpobocka", branchId);
+        Pobocka branch = query.getSingleResult();
+        return new BranchData(branch.getKontaktniOsoba(), branch.getNazev(), branch.getEmail(), branch.getTelefon());
     }
 }
 
